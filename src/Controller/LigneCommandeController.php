@@ -44,7 +44,30 @@ class LigneCommandeController extends AbstractController
 
         return $this->render('ligne_commande/new.html.twig', [
             'ligne_commande' => $ligneCommande,
-            'form' => $form->createView(),
+            'form' => $form->createView(), 
+        ]);
+    }
+
+    /**
+     * @Route("/new/{ref}", name="ligne_commande_new_ref", methods={"GET","POST"})
+     */
+    public function new_ref(Request $request): Response
+    {
+        $ligneCommande = new LigneCommande();
+        $form = $this->createForm(LigneCommandeType::class, $ligneCommande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($ligneCommande);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('ligne_commande_index');
+        }
+
+        return $this->render('ligne_commande/new.html.twig', [
+            'ligne_commande' => $ligneCommande,
+            'form' => $form->createView(), 
         ]);
     }
 

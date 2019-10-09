@@ -135,6 +135,6 @@ class Produit
 
     public function __toString()
   {
-      return $this->createChoiceLabel();
+      return $this->libelle;
   }
 }

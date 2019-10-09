@@ -21,15 +21,17 @@ class LigneCommande
      */
     private $qteCom;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="idLC")
-     */
-    private $idCom;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="idLC")
      */
     private $idProduit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="idLC")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idCom;
 
     public function getId(): ?int
     {
@@ -48,18 +50,6 @@ class LigneCommande
         return $this;
     }
 
-    public function getIdCom(): ?Commande
-    {
-        return $this->idCom;
-    }
-
-    public function setIdCom(?Commande $idCom): self
-    {
-        $this->idCom = $idCom;
-
-        return $this;
-    }
-
     public function getIdProduit(): ?Produit
     {
         return $this->idProduit;
@@ -68,6 +58,18 @@ class LigneCommande
     public function setIdProduit(?Produit $idProduit): self
     {
         $this->idProduit = $idProduit;
+
+        return $this;
+    }
+
+    public function getIdCom(): ?Commande
+    {
+        return $this->idCom;
+    }
+
+    public function setIdCom(?Commande $idCom): self
+    {
+        $this->idCom = $idCom;
 
         return $this;
     }

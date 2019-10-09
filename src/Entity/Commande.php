@@ -19,27 +19,46 @@ class Commande
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="idCom")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idClient;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $dateCom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LigneCommande", mappedBy="idCom")
+     * @ORM\OneToMany(targetEntity="App\Entity\LigneCommande", mappedBy="idCom", orphanRemoval=true)
      */
     private $idLC;
 
-
-    
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $ref;
 
     public function __construct()
     {
-        $this->idProduit = new ArrayCollection();
         $this->idLC = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdClient(): ?Client
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(?Client $idClient): self
+    {
+        $this->idClient = $idClient;
+
+        return $this;
     }
 
     public function getDateCom(): ?\DateTimeInterface
@@ -85,8 +104,20 @@ class Commande
         return $this;
     }
 
-    // public function __toString()
-    // {
-    //     return $this->dateCom;
-    // }
+    public function __toString()
+    {
+        return $this->ref;
+    }
+
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(string $ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
 }
