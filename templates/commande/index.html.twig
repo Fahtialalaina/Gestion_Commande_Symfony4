@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>DateCom</th>
+                <th>Ref</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,10 @@
             <tr>
                 <td>{{ commande.id }}</td>
                 <td>{{ commande.dateCom ? commande.dateCom|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.ref }}</td>
+                <td>
+                    <a href="{{ path('ligne_commande_new', {'ref': commande.ref}) }}">New_Ligne_de_Commande</a>
+                </td>
                 <td>
                     <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
                     <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
@@ -25,7 +30,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
-use App\Form\CommandeType;
+use App\Form\Commande4Type;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class CommandeController extends AbstractController
     public function new(Request $request): Response
     {
         $commande = new Commande();
-        $form = $this->createForm(CommandeType::class, $commande);
+        $form = $this->createForm(Commande4Type::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class CommandeController extends AbstractController
      */
     public function edit(Request $request, Commande $commande): Response
     {
-        $form = $this->createForm(CommandeType::class, $commande);
+        $form = $this->createForm(Commande4Type::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
