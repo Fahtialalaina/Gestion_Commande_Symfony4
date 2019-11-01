@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Commande{% endblock %}
+
+{% block body %}
+
+
+    <form action="" method="post">
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="icon_menu"></i>Gestion Commande
+                </div>
+                <div class="panel-body">
+                    <table class="table-condensed">
+                        <tr>
+                            <td>Numéro commande : </td>
+                            <td>{{ numc }}</td>
+                            <td>Date commande : </td>
+                            <td>{{ form_widget(form.dateComm) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Client : </td>
+                            <td>{{ form_widget(form.client) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Client : </td>
+                            <td>{{ form_widget(form.client) }}</td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <th class="col-md-1">Produit</th>
+                        <th class="col-md-1">Quantité</th>
+                        <th class="col-md-1">Action</th>
+                        <tr>
+                            <td class="col-md-1">{{ form_widget(f.produit) }}</td>
+                            <td class="col-md-1">{{ form_widget(f.qte) }}</td>
+                            <td class="col-md-1">
+                                <input type="submit" value="Add" name="bt" class="btn btn-xarning"
+                                <i class="glyphicon glyphicon-save"></i>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-condensed">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Ligne</th>
+                                <th class="col-md-2">Désignation Article</th>
+                                <th class="col-md-1">Quantité</th>
+                                <th class="col-md-1">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for t in lcomm %}
+                            <tr>
+                                <td class="col-md-2">{{ t.lig }}</td>
+                                <td class="col-md-1">{{ t.produit.libelle }}</td>
+                                <td class="col-md-1">{{ t.qte }}</td>
+                                <td class="col-md-1">
+                                    <a href="{{ path('supprimer', {'id': t.lig}) }}" 
+                                    class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-apple"></i>
+                                    Supprimer
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <td>
+                <input type="submit" value="Valider" name="bt"
+                class="btn btn-succes" <i class="glyphicon glyphicon-save"></i>
+            </td>
+    </form>
+
+    <a href="{{ path('commande_index') }}">back to list</a>
+{% endblock %}
