@@ -1,433 +1,203 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- favicon.ico -->
-        <link rel="icon" sizes="64x64" href="../node_modules/bootstrap/dist/icon/icons-monitor.png" type="image/png">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr">
 
-        
-        {% block stylesheets %}
-          <!-- Font Awesome -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/all.min.css') }}">
-          <!-- Ionicons 
-          <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
-          <!-- Tempusdominus Bbootstrap 4 -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/tempusdominus-bootstrap-4.min.css') }}">
-          <!-- iCheck -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/icheck-bootstrap.min.css') }}">
-          <!-- JQVMap -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/jqvmap.min.css') }}">
-          <!-- Theme style -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/adminlte.min.css') }}">
-          <!-- DataTables -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/dataTables.bootstrap4.css') }}">
-          <!-- overlayScrollbars -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/OverlayScrollbars.min.css') }}">
-          <!-- Daterange picker -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/daterangepicker.css') }}">
-          <!-- summernote -->
-          <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/summernote-bs4.css') }}">
-          <!-- Google Font: Source Sans Pro 
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">-->
-        {% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png"> -->
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- Custom CSS -->
+        <link href="{{ asset('build/libs/flot/css/float-chart.css') }}" type="text/css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="{{ asset('build/css/style.min.css') }}" type="text/css" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
    </head>
-    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-        {#   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li>
-      </ul>
-  
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+   <body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
-      </form>
-  
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../public/assets/vendor/bootstrap/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Brad Diesel
-                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">Call me whenever you can...</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../public/assets/vendor/bootstrap/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    John Pierce
-                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">I got your message bro</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="../public/assets/vendor/bootstrap/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Nora Silvester
-                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">The subject goes here</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-          </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-            <i class="fas fa-th-large"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.navbar -->
-
-    
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <img src="../public/assets/vendor/bootstrap/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-      </a>
-  
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="../public/assets/vendor/bootstrap/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
-          </div>
-        </div>
-  
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Widgets
-                  <span class="right badge badge-danger">New</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/gallery.html" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
-                <p>
-                  Gallery
-                </p>
-              </a>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
-                <p>
-                  Mailbox
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/mailbox/mailbox.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Inbox</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/mailbox/compose.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Compose</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/mailbox/read-mail.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Read</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Pages
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/examples/invoice.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Invoice</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/profile.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Profile</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/e_commerce.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>E-commerce</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/projects.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Projects</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project_add.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Add</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project_edit.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Edit</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/project_detail.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Project Detail</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/contacts.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contacts</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-  
-      <!-- Main content -->
-      <section class="content">
-          
-      </section>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-  
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-  
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.0-rc.1
-      </div>
-    </footer>
-  <!-- ./wrapper -->
-
-      
-  #}
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="{{ path('home') }}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon p-l-10">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{{ asset('build/images/gc.png') }}" alt="homepage" class="light-logo"  height="40" width="40"/>
+                           
+                        </b>
+                        <!--End Logo icon -->
+                         <!-- Logo text -->
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <img src="{{ asset('build/images/Untitled-2.png') }}" alt="homepage" class="light-logo"  height="36,4"/>
+                            
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
+                        <!-- </b> -->
+                        <!--End Logo icon -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('build/images/1.jpg') }}" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> Mon Profil</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> Mon Solde</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Boîte de Messages</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Paramètres</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Déconnexion</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('home') }}" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Accueil</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('client_index') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Client</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('produit_index') }}" aria-expanded="false"><i class="mdi mdi-library-books"></i><span class="hide-menu">Produit</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('categorie_index') }}" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Catégorie</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('commande_index') }}" aria-expanded="false"><i class="mdi mdi-package-variant-closed"></i><span class="hide-menu">Commande</span></a></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            {% block entete %} {% endblock %}
         
-  <div class="container">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
 
-      {% block body %} {% endblock %}
+                {% block body %} {% endblock %}
     
-    </div>
-
-
-{% block javascripts %}
-           <script src="{{ asset('js/main.js') }}"></script>
-           <!-- jQuery -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/jquery.min.js') }}"></script>
-          <!-- jQuery UI 1.11.4 -->
-          <script src="{{ asset('assets/vendor/bootstrap/js-ui/jquery-ui.min.js') }}"></script>
-          <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-          <script>
-            $.widget.bridge('uibutton', $.ui.button)
-          </script>
-          <!-- Bootstrap 4 -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-          <!-- ChartJS -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/Chart.min.js') }}"></script>
-          <!-- Sparkline -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/sparkline.js') }}"></script>
-          <!-- JQVMap -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/jquery.vmap.min.js') }}"></script>
-          <script src="{{ asset('assets/vendor/bootstrap/js/jquery.vmap.world.js') }}"></script>
-          <!-- jQuery Knob Chart -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/js-knob/jquery.knob.min.js') }}"></script>
-          <!-- daterangepicker -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/moment.min.js') }}"></script>
-          <script src="{{ asset('assets/vendor/bootstrap/js/daterangepicker.js') }}"></script>
-          <!-- Tempusdominus Bootstrap 4 -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-          <!-- Summernote -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/summernote-bs4.min.js') }}"></script>
-          <!-- overlayScrollbars -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/jquery.overlayScrollbars.min.js') }}"></script>    
-        <!-- DataTables -->
-        <script src="{{ asset('assets/vendor/bootstrap/js/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('assets/vendor/bootstrap/js/dataTables.bootstrap4.js') }}"></script>
-          <!-- AdminLTE App -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/adminlte.min.js') }}"></script>
-          <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/dashboard.js') }}"></script>
-          <!-- AdminLTE for demo purposes -->
-          <script src="{{ asset('assets/vendor/bootstrap/js/demo.js') }}"></script>
-          <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-</script>
-
-
-<script
-  src="{{ asset('assets/js/jquerry2.js') }}"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-
-<script src="{{ asset('assets/app.js') }}"></script>
-
-
-
-      {% endblock %}
+              </div>
+              <!-- ============================================================== -->
+              <!-- End Container fluid  -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+              Tous droits réservés aux administrateurs de ce site. Développés par Fandresena, Nico, Mika et Mendrika.
+          </footer>
+          <!-- ============================================================== -->
+          <!-- End footer -->
+          <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page wrapper  -->
+      <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Wrapper -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- All Jquery -->
+  <!-- ============================================================== -->
+  <script src="{{ asset('build/libs/jquery/dist/jquery.min.js') }}"></script>
+  <!-- Bootstrap tether Core JavaScript -->
+  <script src="{{ asset('build/libs/popper.js/dist/umd/popper.min.js') }}"></script>
+  <script src="{{ asset('build/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('build/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+  <script src="{{ asset('build/extra-libs/sparkline/sparkline.js') }}"></script>
+  <!--Wave Effects -->
+  <script src="{{ asset('build/js/waves.js') }}"></script>
+  <!--Menu sidebar -->
+  <script src="{{ asset('build/js/sidebarmenu.js') }}"></script>
+  <!--Custom JavaScript -->
+  <script src="{{ asset('build/js/custom.min.js') }}"></script>
+  <!--This page JavaScript -->
+  <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+  <!-- Charts js Files -->
+  <script src="{{ asset('build/libs/flot/excanvas.js') }}"></script>
+  <script src="{{ asset('build/libs/flot/jquery.flot.js') }}"></script>
+  <script src="{{ asset('build/libs/flot/jquery.flot.pie.js') }}"></script>
+  <script src="{{ asset('build/libs/flot/jquery.flot.time.js') }}"></script>
+  <script src="{{ asset('build/libs/flot/jquery.flot.stack.js') }}"></script>
+  <script src="{{ asset('build/libs/flot/jquery.flot.crosshair.js') }}"></script>
+  <script src="{{ asset('build/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+  <script src="{{ asset('build/js/pages/chart/chart-page-init.js') }}"></script>
+{% block javascripts %} {% endblock %}
 
     </body>
     </html>

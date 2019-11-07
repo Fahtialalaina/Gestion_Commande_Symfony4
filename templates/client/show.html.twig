@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Client{% endblock %}
+{% block title %}Client | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Client</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('client_index') }}">Client</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('produit_index') }}">Produit</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Client</h1>
+    <h1>Détails du Client</h1>
 
     <table class="table">
         <tbody>
@@ -21,10 +45,8 @@
             </tr>
         </tbody>
     </table>
+    <hr/>
+    <a href="{{ path('client_edit', {'id': client.id}) }}">Modifier</a>
+    <button class="btn" style="position: relative; margin-left: 85px; margin-top: -58px; padding: 6px 15px;"><a href="{{ path('client_index') }}" style="color: #343a40;">Retour</a></button>
 
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-
-    {{ include('client/_delete_form.html.twig') }}
 {% endblock %}
