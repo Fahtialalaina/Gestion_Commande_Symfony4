@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Commande
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LCommande", mappedBy="commande", orphanRemoval=true, cascade={"persist","remove"})
+     */
+    private $LCommande;
+
+    public function __construct()
+    {
+        $this->LCommande = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,37 @@ class Commande
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LCommande[]
+     */
+    public function getLCommande(): Collection
+    {
+        return $this->LCommande;
+    }
+
+    public function addLCommande(LCommande $lCommande): self
+    {
+        if (!$this->LCommande->contains($lCommande)) {
+            $this->LCommande[] = $lCommande;
+            $lCommande->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLCommande(LCommande $lCommande): self
+    {
+        if ($this->LCommande->contains($lCommande)) {
+            $this->LCommande->removeElement($lCommande);
+            // set the owning side to null (unless already changed)
+            if ($lCommande->getCommande() === $this) {
+                $lCommande->setCommande(null);
+            }
+        }
 
         return $this;
     }

@@ -4,6 +4,20 @@
 
 {% block body %}
 
+{# {{ form_start(form) }}
+    {{ form_row(form.numc) }}
+    {{ form_row(form.dateComm) }}
+    {{ form_row(form.client) }}
+
+    <h3>Ligne Commande</h3>
+    <ul class="lcommande">
+        {% for lcom in form.LCommande %}
+            <li>{{ form_row(lcom.produit) }}</li>
+            <li>{{ form_row(lcom.qte) }}</li>
+        {% endfor %}
+    </ul>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
 
     <form action="" method="post">
         <div class="container">
