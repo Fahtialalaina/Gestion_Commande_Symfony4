@@ -1,11 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Categorie{% endblock %}
+{% block title %}Categorie | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Catégorie</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Categorie</h1>
+    <h1>Création d'une nouvelle Catégorie</h1>
 
     {{ include('categorie/_form.html.twig') }}
 
-    <a href="{{ path('categorie_index') }}">back to list</a>
+    <button class="btn" style="position: relative; margin-left: 100px; margin-top: -57px; padding: 7px 15px;"><a href="{{ path('categorie_index') }}" style="color: #343a40;">Retour</a></button>
 {% endblock %}

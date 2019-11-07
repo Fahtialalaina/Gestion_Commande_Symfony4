@@ -1,11 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Client{% endblock %}
+{% block title %}Client | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Client</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('client_index') }}">Client</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('produit_index') }}">Produit</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Client</h1>
+    <h1>Création d'un nouveau Client</h1>
 
     {{ include('client/_form.html.twig') }}
 
-    <a href="{{ path('client_index') }}">back to list</a>
+    <button class="btn" style="position: relative; margin-left: 100px; margin-top: -57px; padding: 7px 15px;"><a href="{{ path('client_index') }}" style="color: #343a40;">Retour</a></button>
 {% endblock %}
