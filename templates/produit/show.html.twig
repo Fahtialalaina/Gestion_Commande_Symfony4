@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Produit | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Produit</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('produit_index') }}">Produit</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1>Détails du Produit</h1>
 
     <table class="table">
         <tbody>
@@ -25,10 +49,7 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('produit_index') }}">back to list</a>
-
-    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-
-    {{ include('produit/_delete_form.html.twig') }}
+    <hr/>
+    <button class="btn btn-success"><a href="{{ path('produit_edit', {'id': produit.id}) }}" style="color: #fff;">Modifier</a></button>
+    <button class="btn" style="position: relative; margin-left: 5px; padding: 7px 15px;"><a href="{{ path('produit_index') }}" style="color: #343a40;">Retour</a></button>
 {% endblock %}

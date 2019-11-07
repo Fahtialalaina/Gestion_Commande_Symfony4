@@ -1,13 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Produit{% endblock %}
+{% block title %}Produit | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Produit</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('produit_index') }}">Produit</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Produit</h1>
+    <h1>Modification du Produit</h1>
 
-    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('produit/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('produit_index') }}">back to list</a>
+    <button class="btn" style="position: relative; margin-left: 85px; margin-top: -58px; padding: 6px 15px;"><a href="{{ path('produit_index') }}" style="color: #343a40;">Retour</a></button>
 
     {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Categorie{% endblock %}
+{% block title %}Categorie | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Catégorie</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Categorie</h1>
+    <h1>Modification de la Catégorie</h1>
 
-    {{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('categorie_index') }}">back to list</a>
+    <button class="btn" style="position: relative; margin-left: 85px; margin-top: -58px; padding: 6px 15px;"><a href="{{ path('categorie_index') }}" style="color: #343a40;">Retour</a></button>
+
 
     {{ include('categorie/_delete_form.html.twig') }}
 {% endblock %}

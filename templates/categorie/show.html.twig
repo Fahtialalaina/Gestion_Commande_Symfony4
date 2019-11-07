@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie{% endblock %}
+{% block title %}Categorie | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Catégorie</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Categorie</h1>
+    <h1>Détails de la Catégorie</h1>
 
     <table class="table">
         <tbody>
@@ -17,10 +41,7 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('categorie_index') }}">back to list</a>
-
-    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
-
-    {{ include('categorie/_delete_form.html.twig') }}
+    <hr/>
+    <button class="btn btn-success"><a href="{{ path('categorie_edit', {'id': categorie.id}) }}" style="color: #fff;">Modifier</a></button>
+    <button class="btn" style="position: relative; margin-left: 5px; padding: 7px 15px;"><a href="{{ path('categorie_index') }}" style="color: #343a40;">Retour</a></button>
 {% endblock %}

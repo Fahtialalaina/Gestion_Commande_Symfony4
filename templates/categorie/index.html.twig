@@ -1,16 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
+{% block title %}Categorie | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Catégorie</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Categorie index</h1>
+    <h1>Liste de Catégories</h1>
+
+    <div style="position: absolute; right: 0; margin-top: -50px; margin-right: 20px;">
+        <a href="{{ path('categorie_new') }}" class="btn btn-success">Nouvelle Catégorie</a>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Libelle</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +47,15 @@
                 <td>{{ categorie.id }}</td>
                 <td>{{ categorie.libelle }}</td>
                 <td>
-                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-info btn-sm" style="margin-bottom: 5px;">Détails</a>
+                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}" class="btn btn-dark btn-sm" style="margin-bottom: 5px;">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('categorie_new') }}">Create new</a>
 {% endblock %}
