@@ -1,14 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Commande | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Commande</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('home') }}">Accueil</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
-    <h1>Commande</h1>
+    <h1>Détails de la Commande</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Numc</th>
+                <th>N°Commande</th>
                 <td>{{ commande.numc }}</td>
             </tr>
             <tr>
@@ -16,7 +40,7 @@
                 <td>{{ commande.client.nom }}</td>
             </tr>
             <tr>
-                <th>DateComm</th>
+                <th>Date de la Commande</th>
                 <td>{{ commande.dateComm ? commande.dateComm|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
@@ -37,10 +61,10 @@
                             {% endfor %}
                         </tbody>
                     </table>
+    <hr/>
+    <button class="btn btn-success"><a href="{{ path('commande_edit', {'id': commande.id}) }}" style="color: #fff;">Modifier</a></button>
+    <button class="btn" style="position: relative; margin-left: 5px; padding: 7px 15px;"><a href="{{ path('commande_index') }}" style="color: #343a40;">Retour</a></button>
 
-    <a href="{{ path('commande_index') }}">back to list</a>
 
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
-
-    {{ include('commande/_delete_form.html.twig') }}
+    
 {% endblock %}
