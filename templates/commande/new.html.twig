@@ -1,8 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Commande{% endblock %}
+{% block title %}Commande | Gestion de Commande{% endblock %}
+
+{% block entete %}
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Commande</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('commande_index') }}">Commande</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('home') }}">Accueil</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+{% endblock %}
 
 {% block body %}
+    <h1>Création d'une nouvelle Commande</h1>
 
 {# {{ form_start(form) }}
     {{ form_row(form.numc) }}
@@ -20,28 +45,24 @@
 {{ form_end(form) }} #}
 
     <form action="" method="post">
-        <div class="container">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="icon_menu"></i>Gestion Commande
+
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card alert alert-dark">
+                    <div class="card-body">
+                        <h4 class="card-title">Informations sur le Client</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-12" style="margin-bottom: 20px;">N°Commande : {{ numc }}</div>
+                            <div class="col-12" style="margin-bottom: 20px;">Date du commande : {{ form_widget(form.dateComm) }}</div>
+                            <div class="col-12" style="margin-bottom: 20px;">Client : {{ form_widget(form.client) }}</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <table class="table-condensed">
-                        <tr>
-                            <td>Numéro commande : </td>
-                            <td>{{ numc }}</td>
-                            <td>Date commande : </td>
-                            <td>{{ form_widget(form.dateComm) }}</td>
-                        </tr>
-                        <tr>
-                            <td>Client : </td>
-                            <td>{{ form_widget(form.client) }}</td>
-                        </tr>
-                        <tr>
-                            <td>Client : </td>
-                            <td>{{ form_widget(form.client) }}</td>
-                        </tr>
-                    </table>
+            </div>
+        </div>
+
                     <table class="table">
                         <th class="col-md-1">Produit</th>
                         <th class="col-md-1">Quantité</th>
@@ -50,7 +71,7 @@
                             <td class="col-md-1">{{ form_widget(f.produit) }}</td>
                             <td class="col-md-1">{{ form_widget(f.qte) }}</td>
                             <td class="col-md-1">
-                                <input type="submit" value="Add" name="bt" class="btn btn-xarning"
+                                <input type="submit" value="Add" name="bt" class="btn btn-xarning"/>
                                 <i class="glyphicon glyphicon-save"></i>
                             </td>
                         </tr>
@@ -81,14 +102,10 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-        <td>
-                <input type="submit" value="Valider" name="bt"
-                class="btn btn-succes" <i class="glyphicon glyphicon-save"></i>
+            <td>
+                <input type="submit" value="Valider" name="bt" class="btn btn-success"/>
             </td>
     </form>
 
-    <a href="{{ path('commande_index') }}">back to list</a>
+    <button class="btn" style="position: relative; margin-left: 75px; margin-top: -58px; padding: 7px 15px;"><a href="{{ path('commande_index') }}" style="color: #343a40;">Retour</a></button>
 {% endblock %}
