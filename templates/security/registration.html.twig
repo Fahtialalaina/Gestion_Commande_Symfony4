@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Welcome to Registration Page</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.username, {'label': 'Nom Utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur ...'} }) }}
+        {{ form_row(form.email, {'label': 'Adresse Mail', 'attr': {'placeholder': 'Adresse Mail d\'utilisateur ...'} }) }}
+        {{ form_row(form.password, {'label': 'Mot de Passe', 'attr': {'placeholder': 'Mot de Passe d\'utilisateur ...'} }) }}
+        {{ form_row(form.confirm_password, {'label': 'Confirmation du Mot de Passe', 'attr': {'placeholder': 'Confirmer le Mot de Passe d\'utilisateur ...'} }) }}
+        <button type="submit" class="btn btn-success">Enregister</button>
+    {{ form_end(form) }}
+
+{% endblock %}
