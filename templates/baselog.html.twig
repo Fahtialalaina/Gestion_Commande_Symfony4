@@ -28,6 +28,15 @@
             <div class="lds-pos"></div>
         </div>
     </div>
+
+
+    {% if app.user %}
+    <h1>Session is validate</h1>
+   {% else %}
+       <h1>Session is not validate</h1>
+   {% endif %}
+
+
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
