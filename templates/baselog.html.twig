@@ -1,213 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png"> -->
-        <title>{% block title %}{% endblock %}</title>
 
-        <!-- Custom CSS -->
-        <link href="{{ asset('build/libs/flot/css/float-chart.css') }}" type="text/css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="{{ asset('build/css/style.min.css') }}" type="text/css" rel="stylesheet">
+
+    <head>
+        <title>Gestion de Commande</title><meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="{{ asset('build/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('build/css/bootstrap-responsive.min.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('build/css/matrix-login.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('build/css/font-awesome.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:400,700,800') }}" type="text/css" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
-   </head>
+
+    </head>
+
    <body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
+   
+    {% block body %}{% endblock %}
 
-
-    {% if app.user %}
-    <h1>Session is validate</h1>
-   {% else %}
-       <h1>Session is not validate</h1>
-   {% endif %}
-
-
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="{{ path('home') }}">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="{{ asset('build/images/gc.png') }}" alt="homepage" class="light-logo"  height="40" width="40"/>
-                           
-                        </b>
-                        <!--End Logo icon -->
-                         <!-- Logo text -->
-                        <span class="logo-text">
-                             <!-- dark Logo text -->
-                             <img src="{{ asset('build/images/Untitled-2.png') }}" alt="homepage" class="light-logo"  height="36,4"/>
-                            
-                        </span>
-                        <!-- Logo icon -->
-                        <!-- <b class="logo-icon"> -->
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-                            
-                        <!-- </b> -->
-                        <!--End Logo icon -->
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Toggle which is visible on mobile only -->
-                    <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('build/images/1.jpg') }}" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> Mon Profil</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> Mon Solde</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Boîte de Messages</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Paramètres</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ path('security_login') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Déconnexion</a>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('home') }}" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Accueil</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('client_index') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Client</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('produit_index') }}" aria-expanded="false"><i class="mdi mdi-library-books"></i><span class="hide-menu">Produit</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('categorie_index') }}" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Catégorie</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('commande_index') }}" aria-expanded="false"><i class="mdi mdi-package-variant-closed"></i><span class="hide-menu">Commande</span></a></li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            {% block entete %} {% endblock %}
-        
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-
-                {% block body %} {% endblock %}
-    
-              </div>
-              <!-- ============================================================== -->
-              <!-- End Container fluid  -->
-              <!-- ============================================================== -->
-              <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-              Tous droits réservés aux administrateurs de ce site. Développés par Fandresena, Nico, Mika et Mendrika.
-          </footer>
-          <!-- ============================================================== -->
-          <!-- End footer -->
-          <!-- ============================================================== -->
-      </div>
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
-  </div>
-  <!-- ============================================================== -->
-  <!-- End Wrapper -->
-  <!-- ============================================================== -->
-  <!-- ============================================================== -->
-  <!-- All Jquery -->
-  <!-- ============================================================== -->
-  <script src="{{ asset('build/libs/jquery/dist/jquery.min.js') }}"></script>
-  <!-- Bootstrap tether Core JavaScript -->
-  <script src="{{ asset('build/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-  <script src="{{ asset('build/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('build/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-  <script src="{{ asset('build/extra-libs/sparkline/sparkline.js') }}"></script>
-  <!--Wave Effects -->
-  <script src="{{ asset('build/js/waves.js') }}"></script>
-  <!--Menu sidebar -->
-  <script src="{{ asset('build/js/sidebarmenu.js') }}"></script>
-  <!--Custom JavaScript -->
-  <script src="{{ asset('build/js/custom.min.js') }}"></script>
-  <!--This page JavaScript -->
-  <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
-  <!-- Charts js Files -->
-  <script src="{{ asset('build/libs/flot/excanvas.js') }}"></script>
-  <script src="{{ asset('build/libs/flot/jquery.flot.js') }}"></script>
-  <script src="{{ asset('build/libs/flot/jquery.flot.pie.js') }}"></script>
-  <script src="{{ asset('build/libs/flot/jquery.flot.time.js') }}"></script>
-  <script src="{{ asset('build/libs/flot/jquery.flot.stack.js') }}"></script>
-  <script src="{{ asset('build/libs/flot/jquery.flot.crosshair.js') }}"></script>
-  <script src="{{ asset('build/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
-  <script src="{{ asset('build/js/pages/chart/chart-page-init.js') }}"></script>
-{% block javascripts %} {% endblock %}
+    <script src="{{ asset('build/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('build/js/matrix.login.js') }}"></script>
+    {% block javascripts %} {% endblock %}
 
     </body>
-    </html>
+</html>
     

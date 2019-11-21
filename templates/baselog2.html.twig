@@ -28,7 +28,6 @@
             <div class="lds-pos"></div>
         </div>
     </div>
-{% if app.user %}
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -79,37 +78,6 @@
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('build/images/1.jpg') }}" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> Mon Profil</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> Mon Solde</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Boîte de Messages</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Paramètres</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ path('security_login') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Déconnexion</a>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
             </nav>
         </header>
         <!-- ============================================================== -->
@@ -122,15 +90,6 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('home') }}" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Accueil</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('client_index') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Client</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('produit_index') }}" aria-expanded="false"><i class="mdi mdi-library-books"></i><span class="hide-menu">Produit</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('categorie_index') }}" aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span class="hide-menu">Catégorie</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ path('commande_index') }}" aria-expanded="false"><i class="mdi mdi-package-variant-closed"></i><span class="hide-menu">Commande</span></a></li>
-                    </ul>
-                </nav>
                 <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
@@ -171,20 +130,6 @@
       <!-- End Page wrapper  -->
       <!-- ============================================================== -->
   </div>
-{% else %}
-    <!-- <img src="/assets/img/404-image.png" alt="404 not found!"> -->
-    <img style="display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;" src="{{asset('build/images/404-image.png')}}" title="my image" alt="My image">  
-    <h1 class="text-warning" style="text-align: center;">Page not found!</h1>
-    <h1 style="text-align: center; margin-top: 10%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)">vous devez <a href="{{ path('security_login') }}"> se connecté</a> pour accéder à ce page</h1>
-{% endif %}
   <!-- ============================================================== -->
   <!-- End Wrapper -->
   <!-- ============================================================== -->
