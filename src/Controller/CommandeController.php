@@ -48,22 +48,24 @@ class CommandeController extends AbstractController
         $session = $request->getSession();
 
 
-        if(!$session->has('commande')){
-            $session->set('commande',array());
+        if (!$session->has('commande')) {
+            $session->set('commande', array());
         }
         $choix = "";
         $Tabcomm = $session->get('commande', []);
 
- 
+
         if ($form->isSubmitted() || $f->isSubmitted()) {
             $choix = $request->get('bt');
 
-            if($choix == 'Valider'){
+            if ($choix == 'Valider') {
                 $em = $this->getDoctrine()->getManager();
+                $commande->setNumc($numc);
                 $lig = sizeof($Tabcomm);
-                for($i = 1;$i<=$lig;$i++){
+                for ($i = 1; $i <= $lig; $i++) {
                     $lcommande = new LCommande();
-                    $prod = $repository1->findOneBy(array('id'=>$Tabcomm[$i]->getProduit()));
+                    $lcommande->setCommande($commande);
+                    $prod = $repository1->findOneBy(array('id' => $Tabcomm[$i]->getProduit()));
                     $lcommande->setProduit($prod);
                     $lcommande->setLig($i);
                     $lcommande->setNumc($Tabcomm[$i]->getNumc());
@@ -71,24 +73,22 @@ class CommandeController extends AbstractController
                     $em->persist($lcommande);
                     $em->flush();
                 }
-                $commande->setNumc($numc);
                 $em->persist($commande);
- 
-                $compteur->setNumcom($numc+1);
+
+                $compteur->setNumcom($numc + 1);
                 $em->persist($compteur);
                 $em->flush();
 
-                
+
                 $session->clear();
 
                 return $this->redirectToRoute('commande_index');
-            }
-            else if($choix == "Add"){
-                $lig = sizeof($Tabcomm)+1;
+            } else if ($choix == "Add") {
+                $lig = sizeof($Tabcomm) + 1;
                 $lcommande->setNumc($numc);
                 $lcommande->setLig($lig);
                 $Tabcomm[$lig] = $lcommande;
-                $session->set('commande',$Tabcomm);
+                $session->set('commande', $Tabcomm);
             }
 
             // $entityManager = $this->getDoctrine()->getManager();
@@ -147,7 +147,7 @@ class CommandeController extends AbstractController
      */
     public function delete(Request $request, Commande $commande): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $commande->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($commande);
             $entityManager->flush();
@@ -159,13 +159,13 @@ class CommandeController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="supprimer")
      */
-    public function supprimer($id,Request $request)
+    public function supprimer($id, Request $request)
     {
         $session = $request->getSession();
         $Tabcomm = $session->get('commande', []);
-        if(array_key_exists($id, $Tabcomm)){
+        if (array_key_exists($id, $Tabcomm)) {
             unset($Tabcomm[$id]);
-            $session->set('commande',$Tabcomm);
+            $session->set('commande', $Tabcomm);
         }
         return $this->redirectToRoute('commande_new');
     }

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 01 nov. 2019 à 20:20
--- Version du serveur :  10.4.6-MariaDB
--- Version de PHP :  7.1.32
+-- Généré le : Dim 31 mai 2020 à 15:45
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `gestioncomsymfony`
+-- Base de données : `gestioncomsymfony`
 --
 
 -- --------------------------------------------------------
@@ -38,8 +37,7 @@ CREATE TABLE `categorie` (
 --
 
 INSERT INTO `categorie` (`id`, `libelle`) VALUES
-(1, 'PPN'),
-(2, 'outils');
+(1, 'C1');
 
 -- --------------------------------------------------------
 
@@ -58,10 +56,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nom`, `adresse`) VALUES
-(1, 'TIALALAINA Fandresena', 'Ambalafary'),
-(2, 'RASOLOFONIAINA Mendrikaja', 'Isada'),
-(3, 'ANDRIANJATOVO Alfred Nico', 'Ankofafa'),
-(4, 'RABETSIMISOALA Njara Michaël', 'Antarandolo');
+(1, 'Client1', 'Tana');
 
 -- --------------------------------------------------------
 
@@ -81,8 +76,7 @@ CREATE TABLE `commande` (
 --
 
 INSERT INTO `commande` (`id`, `client_id`, `numc`, `date_comm`) VALUES
-(2, 1, 2, '2019-10-31 00:00:00'),
-(3, 2, 3, '2019-11-01 00:00:00');
+(2, 1, 2, '2020-05-31 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -100,7 +94,7 @@ CREATE TABLE `compteur` (
 --
 
 INSERT INTO `compteur` (`id`, `numcom`) VALUES
-(1, 4);
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -111,6 +105,7 @@ INSERT INTO `compteur` (`id`, `numcom`) VALUES
 CREATE TABLE `lcommande` (
   `id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
+  `commande_id` int(11) NOT NULL,
   `numc` int(11) NOT NULL,
   `qte` int(11) NOT NULL,
   `lig` int(11) NOT NULL
@@ -120,11 +115,9 @@ CREATE TABLE `lcommande` (
 -- Déchargement des données de la table `lcommande`
 --
 
-INSERT INTO `lcommande` (`id`, `produit_id`, `numc`, `qte`, `lig`) VALUES
-(4, 2, 2, 1, 1),
-(5, 3, 2, 3, 2),
-(6, 2, 3, 5, 1),
-(7, 3, 3, 2, 2);
+INSERT INTO `lcommande` (`id`, `produit_id`, `commande_id`, `numc`, `qte`, `lig`) VALUES
+(3, 1, 2, 2, 3, 1),
+(4, 2, 2, 2, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -142,8 +135,7 @@ CREATE TABLE `migration_versions` (
 --
 
 INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
-('20191031155100', '2019-10-31 15:55:27'),
-('20191031161948', '2019-10-31 16:19:54');
+('20200531131119', '2020-05-31 13:11:34');
 
 -- --------------------------------------------------------
 
@@ -164,9 +156,39 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`id`, `categorie_id`, `libelle`, `qte`, `pu`) VALUES
-(1, 1, 'Farine', 50, 1500),
-(2, 1, 'Savon', 100, 600),
-(3, 2, 'Eponge', 20, 200);
+(1, 1, 'Produit1', 9, 1000),
+(2, 1, 'Produit2', 10, 800);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `esr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'fahtialalaina', 'fahtialalaina2@gmail.com', '$2y$13$tVeUpKGBYRUtaU/BW6CxmuiNUT7jNBqcvAlV/bbCBdWmoDtWU/IuG');
 
 --
 -- Index pour les tables déchargées
@@ -202,7 +224,8 @@ ALTER TABLE `compteur`
 --
 ALTER TABLE `lcommande`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_57961F0AF347EFB` (`produit_id`);
+  ADD KEY `IDX_57961F0AF347EFB` (`produit_id`),
+  ADD KEY `IDX_57961F0A82EA2E54` (`commande_id`);
 
 --
 -- Index pour la table `migration_versions`
@@ -218,6 +241,18 @@ ALTER TABLE `produit`
   ADD KEY `IDX_29A5EC27BCF5E72D` (`categorie_id`);
 
 --
+-- Index pour la table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -225,19 +260,19 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `compteur`
@@ -249,13 +284,25 @@ ALTER TABLE `compteur`
 -- AUTO_INCREMENT pour la table `lcommande`
 --
 ALTER TABLE `lcommande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
@@ -271,6 +318,7 @@ ALTER TABLE `commande`
 -- Contraintes pour la table `lcommande`
 --
 ALTER TABLE `lcommande`
+  ADD CONSTRAINT `FK_57961F0A82EA2E54` FOREIGN KEY (`commande_id`) REFERENCES `commande` (`id`),
   ADD CONSTRAINT `FK_57961F0AF347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
 
 --

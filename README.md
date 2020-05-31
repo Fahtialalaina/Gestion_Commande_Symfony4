@@ -7,7 +7,10 @@ Pour lancer ce projet:
   $cd Gestion_Commande_Symfony4
 2) Installer les dépendances:
   $composer install
-3) Creer la base de données et faire la migration:
-  $php bin/console doctrine:database:create
-  $php bin/console make:migration
-  $php bin/console doctrine:migrations:migrate
+3) Creer la base de données et faire la migration: <br>
+  $php bin/console doctrine:database:create <br>
+  $php bin/console make:migration <br>
+  $php bin/console doctrine:migrations:migrate <br>
+4) Importer le fichier gestioncomsymfony.sql dans votre base de données. <br>
+  email : fahtialalaina2@gmail.com <br>
+  mdp : 123456 <br>

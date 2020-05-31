@@ -38,7 +38,7 @@ class LCommande
     private $produit;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="LCommande")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="LCommande",cascade={"persist"}))
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
