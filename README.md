@@ -1,12 +1,12 @@
 # Gestion_Commande_Symfony4
-Projet ENI L3 2019
+Projet ENI L3 2019<br>
 
-Pour lancer ce projet:
-1) Cloner le projet
-  $git clone https://github.com/Fahtialalaina/Gestion_Commande_Symfony4.git
-  $cd Gestion_Commande_Symfony4
-2) Installer les dépendances:
-  $composer install
+Pour lancer ce projet:<br>
+1) Cloner le projet<br>
+  $git clone https://github.com/Fahtialalaina/Gestion_Commande_Symfony4.git<br>
+  $cd Gestion_Commande_Symfony4<br>
+2) Installer les dépendances:<br>
+  $composer install<br>
 3) Creer la base de données et faire la migration: <br>
   $php bin/console doctrine:database:create <br>
   $php bin/console make:migration <br>
